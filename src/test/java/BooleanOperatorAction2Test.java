@@ -4,7 +4,7 @@ import com.intellij.codeInsight.intention.IntentionAction;
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase;
 import org.junit.Assert;
 
-public class BooleanOperatorActionTest extends LightJavaCodeInsightFixtureTestCase {
+public class BooleanOperatorAction2Test extends LightJavaCodeInsightFixtureTestCase {
 
   /**
    * Defines path to files used for running tests.
@@ -14,7 +14,7 @@ public class BooleanOperatorActionTest extends LightJavaCodeInsightFixtureTestCa
    */
   @Override
   protected String getTestDataPath() {
-    return "src/test/testData/BooleanOperatorAction";
+    return "src/test/testData/BooleanOperatorAction2";
   }
 
   protected void doTest(String testName, String hint) {

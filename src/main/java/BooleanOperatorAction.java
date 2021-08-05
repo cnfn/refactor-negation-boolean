@@ -7,12 +7,14 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.JavaPsiFacade;
 import com.intellij.psi.JavaTokenType;
-import com.intellij.psi.PsiBinaryExpression;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementFactory;
+import com.intellij.psi.PsiExpression;
 import com.intellij.psi.PsiMethodCallExpression;
 import com.intellij.psi.PsiParenthesizedExpression;
 import com.intellij.psi.PsiPrefixExpression;
+import com.intellij.psi.SmartPointerManager;
+import com.intellij.psi.SmartPsiElementPointer;
 import com.intellij.util.IncorrectOperationException;
 import org.apache.commons.lang3.BooleanUtils;
 import org.jetbrains.annotations.NotNull;
@@ -24,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 public class BooleanOperatorAction extends PsiElementBaseIntentionAction {
     public static final String ACTION_HINT_TEXT = "BooleanOperatorAction: getText";
 
-    private PsiPrefixExpression prefixExpression;
+    private SmartPsiElementPointer<PsiElement> prefixExpPointer;
 
     @Override
     public void invoke(@NotNull Project project, Editor editor, @NotNull PsiElement element)
@@ -33,9 +35,14 @@ public class BooleanOperatorAction extends PsiElementBaseIntentionAction {
         PsiElementFactory factory = JavaPsiFacade.getElementFactory(project);
         PsiMethodCallExpression psiNewExpression = (PsiMethodCallExpression)factory.createExpressionFromText(exp, null);
 
-        psiNewExpression.getArgumentList().getExpressions()[0].replace(
-            Objects.requireNonNull(prefixExpression.getOperand()));
+        PsiPrefixExpression prefixExpression = (PsiPrefixExpression)prefixExpPointer.getElement();
+        PsiExpression operand = Objects.requireNonNull(prefixExpression.getOperand());
+        if (operand instanceof PsiParenthesizedExpression) {
+            operand = ((PsiParenthesizedExpression)operand).getExpression();
+            assert operand != null;
+        }
 
+        psiNewExpression.getArgumentList().getExpressions()[0].replace(operand);
         prefixExpression.replace(psiNewExpression);
     }
 
@@ -46,32 +53,18 @@ public class BooleanOperatorAction extends PsiElementBaseIntentionAction {
         if (BooleanUtils.isFalse(context instanceof PsiPrefixExpression)) {
             context = element.getParent().getContext();
         }
-        return checkPsiPrefixExpression(context);
-        //
-        //if (context instanceof PsiBinaryExpression && context.getChildren().length == 0) {
-        //    context = context.getParent().getContext();
-        //}
-        //
-        //if (context instanceof PsiParenthesizedExpression) {
-        //    context = context.getParent();
-        //}
-        //
-        //return checkPsiPrefixExpression(context);
-    }
-
-    /**
-     * !x
-     *
-     * @param context
-     * @return
-     */
-    private boolean checkPsiPrefixExpression(PsiElement context) {
+        assert context != null;
         if (BooleanUtils.isFalse(context instanceof PsiPrefixExpression)) {
             return false;
         }
 
-        prefixExpression = (PsiPrefixExpression)context;
-        return Objects.equals(JavaTokenType.EXCL, prefixExpression.getOperationSign().getTokenType());
+        PsiPrefixExpression prefixExpression = (PsiPrefixExpression)context;
+        if (JavaTokenType.EXCL.equals(prefixExpression.getOperationSign().getTokenType())) {
+            prefixExpPointer = SmartPointerManager.getInstance(project).createSmartPsiElementPointer(prefixExpression);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
