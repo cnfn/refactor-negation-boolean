@@ -54,17 +54,15 @@ public class BooleanOperatorAction extends PsiElementBaseIntentionAction {
             context = element.getParent().getContext();
         }
         assert context != null;
-        if (BooleanUtils.isFalse(context instanceof PsiPrefixExpression)) {
-            return false;
+        if (context instanceof PsiPrefixExpression) {
+            PsiPrefixExpression prefixExpression = (PsiPrefixExpression)context;
+            if (JavaTokenType.EXCL.equals(prefixExpression.getOperationSign().getTokenType())) {
+                prefixExpPointer =
+                    SmartPointerManager.getInstance(project).createSmartPsiElementPointer(prefixExpression);
+                return true;
+            }
         }
-
-        PsiPrefixExpression prefixExpression = (PsiPrefixExpression)context;
-        if (JavaTokenType.EXCL.equals(prefixExpression.getOperationSign().getTokenType())) {
-            prefixExpPointer = SmartPointerManager.getInstance(project).createSmartPsiElementPointer(prefixExpression);
-            return true;
-        } else {
-            return false;
-        }
+        return false;
     }
 
     @Override
