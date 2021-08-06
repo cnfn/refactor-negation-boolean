@@ -8,7 +8,7 @@ import com.siyeh.ig.psiutils.BoolUtils
 import org.apache.commons.lang3.BooleanUtils
 
 /**
- * @author zhixiao.mzx
+ * @author Cnfn
  * @date 2021/08/02
  */
 class CommonNegationBoolean2NotTrueAction : CommonNegationBooleanAction() {

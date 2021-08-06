@@ -5,7 +5,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.*
 
 /**
- * @author zhixiao.mzx
+ * @author Cnfn
  * @date 2021/08/02
  */
 abstract class AbstractNegationBooleanAction : PsiElementBaseIntentionAction() {

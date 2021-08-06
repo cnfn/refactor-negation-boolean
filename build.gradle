@@ -13,14 +13,14 @@ repositories {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21"
+//    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
     testImplementation group: 'junit', name: 'junit', version: '4.13.2'
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 //    testImplementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21'
-    testImplementation "org.jetbrains.kotlin:kotlin-stdlib"
+//    testImplementation "org.jetbrains.kotlin:kotlin-stdlib"
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -29,9 +29,17 @@ intellij {
     plugins = ['com.intellij.java']
 }
 patchPluginXml {
-    changeNotes = """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
+    changeNotes = """<![CDATA[
+        <html>
+        <ul>
+            <li>1.1.0
+                <ul>
+                    <li>Support refactor common negation boolean syntax.</li>
+                </ul>
+            </li>
+        </ul>
+        </html>
+    ]]>"""
 }
 test {
     systemProperty "idea.home.path", "/Users/zhixiao.mzx/other/intellij-community-master"

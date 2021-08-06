@@ -4,8 +4,16 @@
     <vendor email="cnfnss@gmail.com" url="https://github.com/cnfn">Cnfn</vendor>
 
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    Adds some intention to refactor negation boolean check.<br>
+    For example:
+    <ul>
+    <li>if (!x) --> if (BooleanUtils.isFalse(x))</li>
+    <li>if (!x) --> if (BooleanUtils.isNotTrue(x))</li>
+    <li>if (!StringUtils.isEmpty(str)) --> if (StringUtils.isNotEmpty(str))</li>
+    <li>if (!StringUtils.isBlank(str)) --> if (StringUtils.isNotBlank(str))</li>
+    <li>if (!CollectionUtils.isEmpty(list)) --> if (CollectionUtils.isNotEmpty(list))</li>
+    <li>if (!MapUtils.isEmpty(list)) --> if (MapUtils.isNotEmpty(list))</li>
+    </ul>
     ]]></description>
 
     <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
