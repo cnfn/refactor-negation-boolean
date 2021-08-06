@@ -4,7 +4,7 @@ import com.intellij.codeInsight.intention.IntentionAction;
 import com.intellij.testFramework.fixtures.LightJavaCodeInsightFixtureTestCase;
 import org.junit.Assert;
 
-public class BooleanOperatorActionTest extends LightJavaCodeInsightFixtureTestCase {
+public class UseBrotherMethodReplaceNegationBooleanActionTest extends LightJavaCodeInsightFixtureTestCase {
 
   /**
    * Defines path to files used for running tests.
@@ -14,7 +14,7 @@ public class BooleanOperatorActionTest extends LightJavaCodeInsightFixtureTestCa
    */
   @Override
   protected String getTestDataPath() {
-    return "src/test/testData/BooleanOperatorAction";
+    return "src/test/testData/UseBrotherMethodReplaceNegationBooleanActionStringUtilsIsEmpty";
   }
 
   protected void doTest(String testName, String hint) {
@@ -26,7 +26,7 @@ public class BooleanOperatorActionTest extends LightJavaCodeInsightFixtureTestCa
   }
 
   public void testIntention() {
-    doTest("before.template", BooleanOperatorAction.ACTION_HINT_TEXT);
+    doTest("before.template", ExpAndTextEnum.StringUtils_isEmpty.getText());
   }
 
 }
