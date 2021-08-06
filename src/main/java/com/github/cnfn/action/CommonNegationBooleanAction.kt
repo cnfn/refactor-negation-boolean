@@ -1,7 +1,11 @@
+package com.github.cnfn.action
+
 import com.intellij.codeInspection.util.IntentionName
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
-import com.intellij.psi.*
+import com.intellij.psi.JavaPsiFacade
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiMethodCallExpression
 
 /**
  * @author Cnfn

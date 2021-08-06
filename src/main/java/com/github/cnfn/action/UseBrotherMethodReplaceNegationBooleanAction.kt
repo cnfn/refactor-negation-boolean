@@ -1,7 +1,13 @@
+package com.github.cnfn.action
+
+import com.github.cnfn.ExpAndTextEnum
 import com.intellij.codeInspection.util.IntentionName
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
-import com.intellij.psi.*
+import com.intellij.psi.JavaPsiFacade
+import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiExpression
+import com.intellij.psi.PsiMethodCallExpression
 import org.apache.commons.lang3.BooleanUtils
 
 /**
@@ -16,7 +22,8 @@ class UseBrotherMethodReplaceNegationBooleanAction : AbstractNegationBooleanActi
         val prefixExpression = getPsiPrefixExpression()
 
         val factory = JavaPsiFacade.getElementFactory(project)
-        val psiNewExpression = factory.createExpressionFromText(expAndTextEnum!!.newExp, null) as PsiMethodCallExpression
+        val psiNewExpression =
+            factory.createExpressionFromText(expAndTextEnum!!.newExp, null) as PsiMethodCallExpression
 
         psiNewExpression.argumentList.expressions[0].replace(psiExpression!!)
         prefixExpression.replace(psiNewExpression)

@@ -1,3 +1,5 @@
+package com.github.cnfn.action
+
 import com.intellij.codeInsight.intention.PsiElementBaseIntentionAction
 import com.intellij.codeInspection.util.IntentionFamilyName
 import com.intellij.openapi.editor.Editor

@@ -1,10 +1,10 @@
 <idea-plugin>
-    <id>com.github.cnfn.refactor-code-new</id>
+    <id>com.github.cnfn.refactor-negation-boolean</id>
     <name>Refactor Negation Boolean</name>
     <vendor email="cnfnss@gmail.com" url="https://github.com/cnfn">Cnfn</vendor>
 
     <description><![CDATA[
-    Adds some intention to refactor negation boolean check.<br>
+    Adds some intentions to refactor negation boolean.<br>
     For example:
     <ul>
     <li>if (!x) --> if (BooleanUtils.isFalse(x))</li>
@@ -28,15 +28,15 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <intentionAction>
-            <className>UseBrotherMethodReplaceNegationBooleanAction</className>
+            <className>com.github.cnfn.action.UseBrotherMethodReplaceNegationBooleanAction</className>
             <category>SDK intentions</category>
         </intentionAction>
         <intentionAction>
-            <className>CommonNegationBoolean2NotTrueAction</className>
+            <className>com.github.cnfn.action.CommonNegationBoolean2NotTrueAction</className>
             <category>SDK intentions</category>
         </intentionAction>
         <intentionAction>
-            <className>CommonNegationBooleanAction</className>
+            <className>com.github.cnfn.action.CommonNegationBooleanAction</className>
             <category>SDK intentions</category>
         </intentionAction>
     </extensions>

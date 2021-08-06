@@ -1,3 +1,5 @@
+package com.github.cnfn
+
 /**
  * @author Cnfn
  * @date 2021/08/06
