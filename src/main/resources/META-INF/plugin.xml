@@ -21,11 +21,6 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>
 
-
-    <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-    </extensions>
-
     <extensions defaultExtensionNs="com.intellij">
         <intentionAction>
             <className>com.github.cnfn.action.UseBrotherMethodReplaceNegationBooleanAction</className>
