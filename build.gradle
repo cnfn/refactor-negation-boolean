@@ -4,8 +4,12 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'java'
+
 group 'com.github.cnfn'
-version '1.1.0'
+version '1.1.1'
 
 repositories {
     mavenCentral()
@@ -39,4 +43,14 @@ patchPluginXml {
 test {
     systemProperty "idea.home.path", "/Users/zhixiao.mzx/other/intellij-community-master"
     useJUnitPlatform()
+}
+
+signPlugin {
+    certificateChain = System.getenv("IDEA_CERTIFICATE_CHAIN")
+    privateKey = System.getenv("IDEA_PRIVATE_KEY")
+    password = System.getenv("IDEA_PRIVATE_KEY_PASSWORD")
+}
+
+publishPlugin {
+    token = System.getenv("IDEA_PUBLISH_TOKEN")
 }
