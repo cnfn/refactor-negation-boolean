@@ -28,17 +28,18 @@ intellij {
     plugins = ['com.intellij.java']
 }
 patchPluginXml {
-    changeNotes = """<![CDATA[
-        <html>
+    changeNotes = """
+        1.1.1
         <ul>
-            <li>1.1.0
-                <ul>
-                    <li>Support refactor common negation boolean syntax.</li>
-                </ul>
-            </li>
+            <li>Fix bug: fix exception when not findNegation.</li>
+            <li>update description for Jetbrains plugin page.</li>
         </ul>
-        </html>
-    ]]>"""
+        
+        1.1.0
+        <ul>
+            <li>First upload plugin: support refactor common negation boolean syntax.</li>
+        </ul>
+    """
 }
 test {
     systemProperty "idea.home.path", "/Users/zhixiao.mzx/other/intellij-community-master"
