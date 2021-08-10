@@ -1,9 +1,12 @@
 <idea-plugin>
     <id>com.github.cnfn.refactor-negation-boolean</id>
     <name>Refactor Negation Boolean</name>
-    <vendor email="cnfnss@gmail.com" url="https://github.com/cnfn">Cnfn</vendor>
+    <vendor email="cnfnss@gmail.com" url="https://github.com/cnfn/refactor-negation-boolean">Cnfn</vendor>
 
     <description><![CDATA[
+    <a href="https://plugins.jetbrains.com/plugin/17363-refactor-negation-boolean">Homepage</a> | <a href="https://github.com/cnfn/refactor-negation-boolean/">Github</a> | <a href="https://github.com/cnfn/refactor-negation-boolean/issues">Issues</a>.<br />
+    <br/>
+
     Adds some intentions to refactor negation boolean.<br>
     For example:
     <ul>
@@ -20,11 +23,6 @@
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.java</depends>
-
-
-    <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
-    </extensions>
 
     <extensions defaultExtensionNs="com.intellij">
         <intentionAction>

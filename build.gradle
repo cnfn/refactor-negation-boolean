@@ -4,19 +4,22 @@ plugins {
     id 'java'
 }
 
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+apply plugin: 'java'
+
 group 'com.github.cnfn'
-version '1.1.0'
+version '1.1.1'
 
 repositories {
-    mavenCentral()
     mavenCentral()
 }
 
 dependencies {
     implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21'
+    testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
-    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
@@ -25,19 +28,30 @@ intellij {
     plugins = ['com.intellij.java']
 }
 patchPluginXml {
-    changeNotes = """<![CDATA[
-        <html>
+    changeNotes = """
+        1.1.1
         <ul>
-            <li>1.1.0
-                <ul>
-                    <li>Support refactor common negation boolean syntax.</li>
-                </ul>
-            </li>
+            <li>Fix bug: fix exception when not findNegation.</li>
+            <li>update description for Jetbrains plugin page.</li>
         </ul>
-        </html>
-    ]]>"""
+        
+        1.1.0
+        <ul>
+            <li>First upload plugin: support refactor common negation boolean syntax.</li>
+        </ul>
+    """
 }
 test {
     systemProperty "idea.home.path", "/Users/zhixiao.mzx/other/intellij-community-master"
     useJUnitPlatform()
+}
+
+signPlugin {
+    certificateChain = System.getenv("IDEA_CERTIFICATE_CHAIN")
+    privateKey = System.getenv("IDEA_PRIVATE_KEY")
+    password = System.getenv("IDEA_PRIVATE_KEY_PASSWORD")
+}
+
+publishPlugin {
+    token = System.getenv("IDEA_PUBLISH_TOKEN")
 }

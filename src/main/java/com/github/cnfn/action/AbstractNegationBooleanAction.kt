@@ -30,19 +30,23 @@ abstract class AbstractNegationBooleanAction : PsiElementBaseIntentionAction() {
     }
 
     private fun findNegation(element: PsiElement): PsiPrefixExpression? {
-        var ancestor = element
+        var ancestor: PsiElement? = element
         while (ancestor !is PsiExpression) {
-            ancestor = ancestor.parent
+            ancestor = ancestor!!.parent
 
-            if (ancestor is PsiCodeBlock) {
+            if (null == ancestor || ancestor is PsiCodeBlock) {
                 return null
             }
         }
 
         while (ancestor !is PsiPrefixExpression) {
-            ancestor = ancestor.parent
+            ancestor = ancestor!!.parent
+            if (null == ancestor || ancestor is PsiStatement) {
+                return null
+            }
+
         }
-        return ancestor;
+        return ancestor
     }
 
     override fun isAvailable(project: Project, editor: Editor, element: PsiElement): Boolean {
